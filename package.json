@@ -1,0 +1,13 @@
+{
+  "name": "devex-genius",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "build":"mkdir build && node src/index.js"
+  },
+  "description": "This project contains a Forge app written in JavaScript that displays `Hello World!` in a Jira global page.",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

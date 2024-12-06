@@ -1,0 +1,45 @@
+modules:
+  jira:globalPage:
+    - key: devex-genius-dashboard
+      resource: main
+      resolver:
+        function: dashboardResolver
+      title: DevEx Genius Dashboard
+    - key: devex-genius-insights
+      resource: main
+      resolver:
+        function: insightsResolver
+      title: Team Insights
+  
+  function:
+    - key: dashboardResolver
+      handler: resolvers/dashboard.handler
+    - key: insightsResolver  
+      handler: resolvers/insights.handler
+    - key: workflowAnalyzer
+      handler: resolvers/workflowAnalysis.handler
+    - key: productivityAnalyzer 
+      handler: resolvers/productivityInsights.handler
+
+  trigger:
+    - key: scheduledAnalysis
+      handler: triggers/scheduled.handler
+      schedule: 0 0 * * * # Daily at midnight
+
+resources:
+  - key: main
+    path: build
+
+permissions:
+  scopes:
+    - read:jira-work
+    - write:jira-work
+    - read:confluence-content
+    - read:bitbucket-pull-request
+    - read:user
+    - storage:app
+
+app:
+  runtime:
+    name: nodejs20.x
+  id: ari:cloud:ecosystem::app/3226826d-9fb7-4599-8ff6-cdaf974c449b
